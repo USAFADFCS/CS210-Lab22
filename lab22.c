@@ -1,6 +1,7 @@
 #include <stdio.h>
 #define NUM_GAMES 1075
 
+//This is a test of a push
 
 /** 
  * @brief normalizes a value to a new range - for example, if you normalized a percentage of 0.67 to a range between 0 and 20 it would return 13.4.
@@ -38,7 +39,7 @@ double getShootingEffectivenessFromAverages(double fgPct, double fg3Pct, double 
  * The differential will be positive if the home team has a greater point differential, and vice versa
  */ 
 double pointDifferentialPerGameOneTeam(int teamID, int* homeIDs, int* awayIDs, int* ptsHomes, int* ptsAways, int len){
-
+    //This is a second test of a push
     return 0.0;
 }
 
