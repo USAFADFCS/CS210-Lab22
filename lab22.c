@@ -52,8 +52,8 @@ double pointDifferentialPerGameOneTeam(int teamID, int* homeIDs, int* awayIDs, i
  * For example, if the home team has won 2 more games, then return 2.  if the away team has won 1 more game then return -1.
  */ 
 int headToHeadWL(int homeID, int awayID, int* homeIDs, int* awayIDs, int* gameResults){
-
-    return 1;
+    
+    return 0;
 }
 
 /** 
@@ -71,6 +71,7 @@ int headToHeadWL(int homeID, int awayID, int* homeIDs, int* awayIDs, int* gameRe
  * The return value should be the result of the function getShootingEffectivenessFromAverages() given the team's fgPct, fg3Pct, and ftPct across all games
  */ 
 double shootingEffectivenessOneTeam(int teamID, int* homeIDs, int* awayIDs, double* homeFgPcts, double* awayFgPcts, double* homeFg3Pcts, double* awayFg3Pcts, double* homeFtPcts, double* awayFtPcts){
+    
     return 0.0;
 }
 
@@ -102,7 +103,7 @@ double reboundsPerGameComparison(int homeID, int awayID, int* homeIDs, int* away
  * The differential will be positive if the home team averages more assists per game, and vice versa
  */ 
 double assistsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayIDs, int* homeAssists, int* awayAssists){
-
+    
     return 0.0;
 }
 
@@ -116,7 +117,7 @@ double assistsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayI
  * @return the overall normalized comparison (which will range from 0.0 to 100.0)
  */ 
 double teamComparison(double pointDiffComparison, int h2hResult, double shootingDifferential, double reboundDifferential, double assistDifferential){
-
+    
     return 0.0;
 }
 
@@ -127,5 +128,9 @@ int main(){
     int homeIDForPrediction = 1610612741;
     int awayIDForPrediction = 1610612739;
 
+    //This is the final output that is required.  You will need to change homeTeamWinPercentage to the correct value.
+    double homeTeamWinPercentage = 0.0;
+    printf("Team %d has a %.1lf%% change to win the game.\n",homeIDForPrediction,homeTeamWinPercentage);
+  
     return 0;
 }
