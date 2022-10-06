@@ -1,7 +1,6 @@
 #include <stdio.h>
 #define NUM_GAMES 1075
 
-//This is a test of a push
 
 /** 
  * @brief normalizes a value to a new range - for example, if you normalized a percentage of 0.67 to a range between 0 and 20 it would return 13.4.
@@ -32,14 +31,13 @@ double getShootingEffectivenessFromAverages(double fgPct, double fg3Pct, double 
  * @param teamID the team being analyzed
  * @param homeIDs the homeIDs for all games
  * @param awayIDs the awayIDs for all games
- * @param ptsHomes the ptsHome values for all games
- * @param ptsAways the ptsAway values for all games
- * @param len the size of all of the array parameters
- * @return the difference in point differentials per game between the home and away team
- * The differential will be positive if the home team has a greater point differential, and vice versa
+ * @param homeScores the ptsHome values for all games
+ * @param awayScores the ptsAway values for all games
+ * @return the point differential per game across all game for the team
+ * The differential will be positive if the team has gotten more points per game than their opponents, and vice versa
  */ 
-double pointDifferentialPerGameOneTeam(int teamID, int* homeIDs, int* awayIDs, int* ptsHomes, int* ptsAways, int len){
-    //This is a second test of a push
+double pointDifferentialPerGameOneTeam(int teamID, int* homeIDs, int* awayIDs, int* homeScores, int* awayScores){
+    
     return 0.0;
 }
 
@@ -50,18 +48,17 @@ double pointDifferentialPerGameOneTeam(int teamID, int* homeIDs, int* awayIDs, i
  * @param homeIDs the homeIDs for all games
  * @param awayIDs the awayIDs for all games
  * @param gameResults results of all games, 1 if home team won, and 0 otherwise
- * @param len the size of all of the array parameters
  * @return the win/loss differential - The differential will be positive if the home team has won more, and vice versa.
  * For example, if the home team has won 2 more games, then return 2.  if the away team has won 1 more game then return -1.
  */ 
-int headToHeadWL(int homeID, int awayID, int* homeIDs, int* awayIDs, int* gameResults, int len){
-    
-    return 0;
+int headToHeadWL(int homeID, int awayID, int* homeIDs, int* awayIDs, int* gameResults){
+
+    return 1;
 }
 
 /** 
  * @brief get the shooting effectiveness of a team - this stat combines averages of field goal percentage, 3-point percentage, and free throw percentage
- * @param homeID the team to get the shooting effectiveness for
+ * @param teamID the team to get the shooting effectiveness for
  * @param homeIDs the homeIDs for all games
  * @param awayIDs the awayIDs for all games
  * @param homeFgPcts the field goal percentages for the home teams for all games
@@ -69,13 +66,11 @@ int headToHeadWL(int homeID, int awayID, int* homeIDs, int* awayIDs, int* gameRe
  * @param homeFg3Pcts the 3-point field goal percentages for the home teams for all games
  * @param awayFg3Pcts the 3-point field goal percentages for the away teams for all games
  * @param homeFtPcts the free throw percentages for the home teams for all games
- * @param homeFtPcts the free throw percentages for the away teams for all games
- * @param len the size of all of the array parameters
+ * @param awayFtPcts the free throw percentages for the away teams for all games
  * @return the shooting effectiveness of the team in question - 
  * The return value should be the result of the function getShootingEffectivenessFromAverages() given the team's fgPct, fg3Pct, and ftPct across all games
  */ 
-double shootingEffectivenessOneTeam(int teamID, int* homeIDs, int* awayIDs, double* homeFgPcts, double* awayFgPcts, double* homeFg3Pcts, double* awayFg3Pcts, double* homeFtPcts, double* awayFtPcts, int len){
-    
+double shootingEffectivenessOneTeam(int teamID, int* homeIDs, int* awayIDs, double* homeFgPcts, double* awayFgPcts, double* homeFg3Pcts, double* awayFg3Pcts, double* homeFtPcts, double* awayFtPcts){
     return 0.0;
 }
 
@@ -85,13 +80,12 @@ double shootingEffectivenessOneTeam(int teamID, int* homeIDs, int* awayIDs, doub
  * @param awayID the away team for the game being analyzed
  * @param homeIDs the homeIDs for all games
  * @param awayIDs the awayIDs for all games
- * @param rbsHomes the rbsHome values for all games
- * @param rbsAways the rbsAway values for all games
- * @param len the size of all of the array parameters
+ * @param homeRebounds the homeRebound values for all games
+ * @param awayRebounds the awayRebound values for all games
  * @return the difference in rebounds per game between the home and away team
  * The differential will be positive if the home team averages more rebounds per game, and vice versa
  */ 
-double reboundsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayIDs, int* reboundsHomes, int* reboundsAways, int len){
+double reboundsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayIDs, int* homeRebounds, int* awayRebounds){
     
     return 0.0;
 }
@@ -102,26 +96,24 @@ double reboundsPerGameComparison(int homeID, int awayID, int* homeIDs, int* away
  * @param awayID the away team for the game being analyzed
  * @param homeIDs the homeIDs for all games
  * @param awayIDs the awayIDs for all games
- * @param assistsHomes the assistsHome values for all games
- * @param assistsAways the assistsAway values for all games
- * @param len the size of all of the array parameters
+ * @param homeAssists the homeAssist values for all games
+ * @param awayAssists the awayAssist values for all games
  * @return the difference in assists per game between the home and away team
  * The differential will be positive if the home team averages more assists per game, and vice versa
  */ 
-double assistsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayIDs, int* assistsHomes, int* assistsAways, int len){
-
+double assistsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayIDs, int* homeAssists, int* awayAssists){
 
     return 0.0;
 }
 
 /** 
- * @brief takes the 5 calculated comparison values, normalizes them to ranges between -20.0 and 20.0, and adds them all up to return a final comparison
+ * @brief takes the 5 calculated comparison values, normalizes them to ranges between -10.0 and 10.0, and adds them together plus 50 to return a final comparison 
  * @param pointDiffComparison the comparison in point differential between the two teams
  * @param h2hResult the result of head-to-head games between the two teams
  * @param shootingDifferential the shooting differential between the two teams
  * @param reboundDifferential the differential in rebounds per game between the two teams
  * @param assistDifferential the differential in assists per game between the two teams
- * @return the overall normalized comparison (which will range from -100.0 to 100.0)
+ * @return the overall normalized comparison (which will range from 0.0 to 100.0)
  */ 
 double teamComparison(double pointDiffComparison, int h2hResult, double shootingDifferential, double reboundDifferential, double assistDifferential){
 
@@ -130,6 +122,10 @@ double teamComparison(double pointDiffComparison, int h2hResult, double shooting
 
 
 int main(){
+
+    //These are the IDs for the teams for the game we are predicting
+    int homeIDForPrediction = 1610612741;
+    int awayIDForPrediction = 1610612739;
 
     return 0;
 }
