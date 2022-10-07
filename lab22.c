@@ -3,19 +3,6 @@
 
 
 /** 
- * @brief normalizes a value to a new range - for example, if you normalized a percentage of 0.67 to a range between 0 and 20 it would return 13.4.
- * @param valueToNormalize the value you want to normalize
- * @param initialRangeMin the minimum value for the range you want to normalize, for example if the value is currently a percentage then this would be 0.0.
- * @param initialRangeMax the minimum value for the range you want to normalize, for example if the value is currently a percentage then this would be 1.0 (or 100.0).
- * @param normalizedMin the minimum value for the new range you are normalizing to.  for example, if you want the normalized values to be between 3.0 and 5.0, this would be 3.0
- * @param normalizedMax the maximum value for the new range you are normalizing to.  for example, if you want the normalized values to be between 3.0 and 5.0, this would be 5.0
- * @return the new normalized value
- */ 
-double normalizeValue(double valueToNormalize, double initialRangeMin, double initialRangeMax, double normalizedMin, double normalizedMax){
-    return (valueToNormalize - initialRangeMin)/(initialRangeMax - initialRangeMin)*(normalizedMax-normalizedMin) + normalizedMin;
-}
-
-/** 
  * @brief combine field goal percentage 3-pt percentage, and free throw percentage into one shooting stat
  * @param fgPct the team's field goal percentage
  * @param threePtPct the team's 3-point field goal percentage
@@ -107,30 +94,21 @@ double assistsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayI
     return 0.0;
 }
 
-/** 
- * @brief takes the 5 calculated comparison values, normalizes them to ranges between -10.0 and 10.0, and adds them together plus 50 to return a final comparison 
- * @param pointDiffComparison the comparison in point differential between the two teams
- * @param h2hResult the result of head-to-head games between the two teams
- * @param shootingDifferential the shooting differential between the two teams
- * @param reboundDifferential the differential in rebounds per game between the two teams
- * @param assistDifferential the differential in assists per game between the two teams
- * @return the overall normalized comparison (which will range from 0.0 to 100.0)
- */ 
-double teamComparison(double pointDiffComparison, int h2hResult, double shootingDifferential, double reboundDifferential, double assistDifferential){
-    
-    return 0.0;
-}
-
 
 int main(){
 
     //These are the IDs for the teams for the game we are predicting
-    int homeIDForPrediction = 1610612741;
-    int awayIDForPrediction = 1610612739;
+    int homeIDForPrediction = 41;
+    int awayIDForPrediction = 39;
 
-    //This is the final output that is required.  You will need to change homeTeamWinPercentage to the correct value.
-    double homeTeamWinPercentage = 0.0;
-    printf("Team %d has a %.1lf%% change to win the game.\n",homeIDForPrediction,homeTeamWinPercentage);
+    //This is the final output that is required.  You will need to change prediction an teamPredictedToWin to the correct values.
+    double prediction = 0.0;
+    int teamPredictedToWin = 0
+    printf("The final output is %lf, which means team %d is predicted to win the game.\n",prediction,teamPredictedToWin);
   
     return 0;
 }
+
+
+
+
