@@ -99,7 +99,24 @@ int main(){
 
     //These are the IDs for the teams for the game we are predicting
     int homeIDForPrediction = 41;
-    int awayIDForPrediction = 39;
+    int awayIDForPrediction = 39; 
+
+    //Create blank parallel arrays that will be filled with data
+    int homeIDs[NUM_GAMES];
+    int awayIDs[NUM_GAMES];
+    int homeScores[NUM_GAMES];
+    int awayScores[NUM_GAMES];
+    int homeWins[NUM_GAMES];
+    double homeFgPcts[NUM_GAMES];
+    double homeFg3Pcts[NUM_GAMES];
+    double homeFtPcts[NUM_GAMES];
+    double awayFgPcts[NUM_GAMES];
+    double awayFg3Pcts[NUM_GAMES];
+    double awayFtPcts[NUM_GAMES];
+    int homeRebounds[NUM_GAMES];
+    int awayRebounds[NUM_GAMES];
+    int homeAssists[NUM_GAMES];
+    int awayAssists[NUM_GAMES];
 
     //This is the final output that is required.  You will need to change prediction an teamPredictedToWin to the correct values.
     double prediction = 0.0;
