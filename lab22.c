@@ -103,8 +103,8 @@ int main(){
 
     //This is the final output that is required.  You will need to change prediction an teamPredictedToWin to the correct values.
     double prediction = 0.0;
-    int teamPredictedToWin = 0
-    printf("The final output is %lf, which means team %d is predicted to win the game.\n",prediction,teamPredictedToWin);
+    int teamPredictedToWin = 0;
+    printf("The final output is %.2lf, which means team %d is predicted to win the game.\n",prediction,teamPredictedToWin);
   
     return 0;
 }
