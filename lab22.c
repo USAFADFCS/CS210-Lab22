@@ -1,6 +1,18 @@
 #include <stdio.h>
-#define NUM_GAMES 1075
+#define NUM_GAMES 10
 
+/** 
+ * @brief normalizes a value to a new range - for example, if you normalized a percentage of 0.67 to a range between 0 and 20 it would return 13.4.
+ * @param valueToNormalize the value you want to normalize
+ * @param initialRangeMin the minimum value for the range you want to normalize, for example if the value is currently a percentage then this would be 0.0.
+ * @param initialRangeMax the minimum value for the range you want to normalize, for example if the value is currently a percentage then this would be 1.0 (or 100.0).
+ * @param normalizedMin the minimum value for the new range you are normalizing to.  for example, if you want the normalized values to be between 3.0 and 5.0, this would be 3.0
+ * @param normalizedMax the maximum value for the new range you are normalizing to.  for example, if you want the normalized values to be between 3.0 and 5.0, this would be 5.0
+ * @return the new normalized value
+ */ 
+double normalizeValue(double valueToNormalize, double initialRangeMin, double initialRangeMax, double normalizedMin, double normalizedMax){
+    return (valueToNormalize - initialRangeMin)/(initialRangeMax - initialRangeMin)*(normalizedMax-normalizedMin) + normalizedMin;
+}
 
 /** 
  * @brief combine field goal percentage 3-pt percentage, and free throw percentage into one shooting stat
@@ -94,38 +106,80 @@ double assistsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayI
     return 0.0;
 }
 
+/** 
+ * @brief takes the 5 calculated comparison values, normalizes them to ranges between -10.0 and 10.0, and adds them together plus 50 to return a final comparison 
+ * @param pointDiffComparison the comparison in point differential between the two teams
+ * @param h2hResult the result of head-to-head games between the two teams
+ * @param shootingDifferential the shooting differential between the two teams
+ * @param reboundDifferential the differential in rebounds per game between the two teams
+ * @param assistDifferential the differential in assists per game between the two teams
+ * @return the overall normalized comparison (which will range from 0.0 to 100.0)
+ */ 
+double teamComparison(double pointDiffComparison, int h2hResult, double shootingDifferential, double reboundDifferential, double assistDifferential){
+    
+    return 0.0;
+}
+
 
 int main(){
 
     //These are the IDs for the teams for the game we are predicting
-    int homeIDForPrediction = 41;
-    int awayIDForPrediction = 39; 
+    int homeID = 48;
+    int awayID = 39;
 
-    //Create blank parallel arrays that will be filled with data
-    int homeIDs[NUM_GAMES];
-    int awayIDs[NUM_GAMES];
-    int homeScores[NUM_GAMES];
-    int awayScores[NUM_GAMES];
-    int homeWins[NUM_GAMES];
-    double homeFgPcts[NUM_GAMES];
-    double homeFg3Pcts[NUM_GAMES];
-    double homeFtPcts[NUM_GAMES];
-    double awayFgPcts[NUM_GAMES];
-    double awayFg3Pcts[NUM_GAMES];
-    double awayFtPcts[NUM_GAMES];
-    int homeRebounds[NUM_GAMES];
-    int awayRebounds[NUM_GAMES];
-    int homeAssists[NUM_GAMES];
-    int awayAssists[NUM_GAMES];
+    // These parallel arrays contain SOME game information to test your function
+    // Later the lab, you will replace this with the contents of the file games.csv
+    int homeIDs[NUM_GAMES]        = {48,    37,    38,    48,    45,    38,    51,    61,    59,    39};
+    int awayIDs[NUM_GAMES]        = {50,    46,    65,    39,    42,    63,    48,    65,    58,    66};
+    int homeScores[NUM_GAMES]     = {104,   112,   114,   117,   100,   120,   107,   106,   112,   98};
+    int awayScores[NUM_GAMES]     = {113,   106,   103,   105,   113,   107,   113,   108,   115,   119};
+    int homeAssists[NUM_GAMES]    = {23,    28,    23,    28,    29,    33,    24,    12,    28,    21};
+    int awayAssists[NUM_GAMES]    = {21,    22,    21,    25,    20,    24,    27,    25,    26,    32};
+    int homeRebounds[NUM_GAMES]   = {53,    47,    47,    42,    39,    51,    30,    41,    40,    37};
+    int awayRebounds[NUM_GAMES]   = {46,    36,    42,    40,    47,    44,    35,    42,    49,    45};
+    int homeTeamWins[NUM_GAMES]   = {0,     1,     1,     1,     0,     1,     0,     0,     0,     0};
+    double homeFgPcts[NUM_GAMES]  = {0.398, 0.478, 0.467, 0.477, 0.477, 0.517, 0.47,  0.434, 0.495, 0.468};
+    double awayFgPcts[NUM_GAMES]  = {0.422, 0.488, 0.422, 0.443, 0.455, 0.424, 0.519, 0.452, 0.459, 0.506};
+    double homeFg3Pcts[NUM_GAMES] = {0.333, 0.29,  0.188, 0.314, 0.2,   0.432, 0.387, 0.269, 0.375, 0.323};
+    double awayFg3Pcts[NUM_GAMES] = {0.357, 0.375, 0.294, 0.32,  0.306, 0.325, 0.333, 0.297, 0.313, 0.447};
+    double homeFtPcts[NUM_GAMES]  = {0.76,  0.895, 0.8,   0.889, 0.632, 0.8,   0.773, 0.75,  0.5,   0.667};
+    double awayFtPcts[NUM_GAMES]  = {0.875, 0.824, 0.958, 0.931, 0.786, 0.769, 0.821, 0.75,  0.844, 0.727};
 
-    //This is the final output that is required.  You will need to change prediction an teamPredictedToWin to the correct values.
-    double prediction = 0.0;
-    int teamPredictedToWin = 0;
-    printf("The final output is %.2lf, which means team %d is predicted to win the game.\n",prediction,teamPredictedToWin);
+
+    // ----------------------------------------------------------------------------------
+    // Step 1:  Read the the contents of games.csv into the parallel arrays above
+    // ----------------------------------------------------------------------------------
+    
+
+    // ----------------------------------------------------------------------------------
+    // Step 2:  Call the 5 functions and gather their data
+    // ----------------------------------------------------------------------------------
+    // Call pointDifferentialPerGameOneTeam 2x – once for the home team and once for the away time
+
+    // Subtract the home team from the away team to get the pointDifferentialStat
+
+    // Call shootingEffectivenessOneTeam 2x – once for the home team and once for the away time
+    
+    // Subtract the home team from the away team to get the shootingDifferentialStat
+
+    // Call reboundsPerGameComparison once to get the reboundingStat
+
+    // Call assistsPerGameComparison once to get the assistStat
+
+    // Call headToHeadWL once to get the headToHeadStat
+
+
+    // ----------------------------------------------------------------------------------
+    // Step 3:  Use the following formula to predict the winner
+    // (pointDifferentialStat * 0.6) + headToHeadStat + (shootingDifferentialStat * 120) + reboundingStat + (assistStat * 0.75)
+    // ----------------------------------------------------------------------------------
+
+
+    // ----------------------------------------------------------------------------------
+    // Print out the output
+    // ----------------------------------------------------------------------------------
+    // If the value is > 0, then the home team is predicted to win; if the value is <= 0, then the away team is predicted to win
   
     return 0;
+
 }
-
-
-
-
