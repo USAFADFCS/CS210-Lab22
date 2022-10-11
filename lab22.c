@@ -1,5 +1,4 @@
 #include <stdio.h>
-#define MAX_GAMES = 1075
 
 /** 
  * @brief combine field goal percentage 3-pt percentage, and free throw percentage into one shooting stat
