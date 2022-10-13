@@ -11,6 +11,6 @@
  * The differential will be positive if team 1 averages more assists per game, and vice-versa
  */ 
 double assistsPerGameComparison(int team1, int team2, int* homeIDs, int* awayIDs, int* homeAssists, int* awayAssists, int num_games){
-    //testing 1 2 3 4
+    
     return 0.0;
 }
