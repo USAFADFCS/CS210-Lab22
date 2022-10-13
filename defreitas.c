@@ -3,7 +3,7 @@
  * @param fgPct the team's field goal percentage
  * @param threePtPct the team's 3-point field goal percentage
  * @param ftPct the team's free throw percentage
- * @return the team's shooting effectiveness - this will be a number between 0 and 1.
+ * @return the team's shooting effectiveness - this will be a number between 0 and 1
  */ 
 double getShootingEffectivenessFromAverages(double fgPct, double fg3Pct, double ftPct){
     return 0.3 * fgPct + 0.5 * fg3Pct + 0.2 * ftPct;
