@@ -80,7 +80,7 @@ int headToHeadWL(int homeID, int awayID, int* homeIDs, int* awayIDs, int* gameRe
  * The return value should be the result of the function getShootingEffectivenessFromAverages() given the team's fgPct, fg3Pct, and ftPct across all games
  */ 
 double shootingEffectivenessOneTeam(int teamID, int* homeIDs, int* awayIDs, double* homeFgPcts, double* awayFgPcts, double* homeFg3Pcts, double* awayFg3Pcts, double* homeFtPcts, double* awayFtPcts, int num_games){
-    
+    // Adrian was here
     return 0.0;
 }
 
