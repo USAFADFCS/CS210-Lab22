@@ -41,27 +41,8 @@ double pointDifferentialPerGameOneTeam(int teamID, int* homeIDs, int* awayIDs, i
  * For example, if the home team has won 2 more games, then return 2.  if the away team has won 1 more game then return -1.
  */ 
 int headToHeadWL(int homeID, int awayID, int* homeIDs, int* awayIDs, int* gameResults, int num_games){
-    int wlCounter = 0;
-
-    //Go through each game and check whether it was these two exact teams.  If so, check who won and adjust wlCounter acccordingly
-    //Two if statements are needed to check whether it was these two teams because it counts regardless of who was home or away.
-    for(int i=0;i<num_games;i++){
-        if (homeID == homeIDs[i] && awayID == awayIDs[i]){
-            if (gameResults[i] == 1){
-                wlCounter+=1;
-            }else{
-                wlCounter-=1;
-            }
-        }else if (awayID == homeIDs[i] && homeID == awayIDs[i]){
-            if (gameResults[i] == 1){
-                wlCounter-=1;
-            }else{
-                wlCounter+=1;
-            }
-        }
-    }
-
-    return wlCounter;
+    
+    return 0.0;
 }
 
 /** 
@@ -80,8 +61,30 @@ int headToHeadWL(int homeID, int awayID, int* homeIDs, int* awayIDs, int* gameRe
  * The return value should be the result of the function getShootingEffectivenessFromAverages() given the team's fgPct, fg3Pct, and ftPct across all games
  */ 
 double shootingEffectivenessOneTeam(int teamID, int* homeIDs, int* awayIDs, double* homeFgPcts, double* awayFgPcts, double* homeFg3Pcts, double* awayFg3Pcts, double* homeFtPcts, double* awayFtPcts, int num_games){
-    
-    return 0.0;
+    double fgSum = 0;
+    double fg3Sum = 0;
+    double ftSum = 0;
+    int gamesCounted = 0;
+
+    for(int i=0;i<num_games;i++){
+        if (teamID == homeIDs[i]){
+            fgSum += homeFgPcts[i];
+            fg3Sum += homeFg3Pcts[i];
+            ftSum += homeFtPcts[i];
+            gamesCounted++;
+        }else if (teamID == awayIDs[i]){
+            fgSum += awayFgPcts[i];
+            fg3Sum += awayFg3Pcts[i];
+            ftSum += awayFtPcts[i];
+            gamesCounted++;
+        }
+    }
+
+    double avgFgPct = fgSum/(double)gamesCounted;
+    double avgFg3Pct = fg3Sum/(double)gamesCounted;
+    double avgFtPct = ftSum/(double)gamesCounted;
+
+    return getShootingEffectivenessFromAverages(avgFgPct,avgFg3Pct,avgFtPct);
 }
 
 /** 
