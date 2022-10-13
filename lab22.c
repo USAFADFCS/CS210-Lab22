@@ -189,8 +189,8 @@ int main(){
     // Call reboundsPerGameComparison once to get the reboundingStat
 
     // Call assistsPerGameComparison once to get the assistStat
-    double assistStat = assistsPerGameComparison(homeID, awayID, homeIDs, awayIDs, homeAssists, awayAssists);
-    printf("Did this work? %lf\n", assistStat);
+   
+    
     // Call headToHeadWL once to get the headToHeadStat
 
 
