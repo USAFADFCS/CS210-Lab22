@@ -20,7 +20,7 @@ double getShootingEffectivenessFromAverages(double fgPct, double fg3Pct, double 
  * @param awayScores the ptsAway values for all games
  * @param num_games the number of games being analyzed (the length of the parallel arrays)
  * @return the point differential per game across all game for the team
- * The differential will be positive if the team has gotten more points per game than their opponents, and vice versa
+ * The differential will be positive if the team has gotten more points per game than their opponents, and vice-versa
  */ 
 double pointDifferentialPerGameOneTeam(int teamID, int* homeIDs, int* awayIDs, int* homeScores, int* awayScores, int num_games){
     

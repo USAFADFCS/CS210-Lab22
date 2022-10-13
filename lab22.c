@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-//For now, you'll test your function using the 10 games listed in main().  This will need to change to 1075 when you read from the file.
+//For now, you'll test your function using the 10 games listed in main().  This will need to change to 1075 when you read from the file
 #define NUM_GAMES 10
 #include "lab22.h"
 

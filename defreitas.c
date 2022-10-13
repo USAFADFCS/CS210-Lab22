@@ -15,7 +15,7 @@ double getShootingEffectivenessFromAverages(double fgPct, double fg3Pct, double 
  * @param teamID the team to get the shooting effectiveness for
  * @param homeIDs the homeIDs for all games
  * @param awayIDs the awayIDs for all games
- * @param homeFgPcts the field goal percentages for the home teams for all games
+ * @param homeFgPcts the field goal percentages for the home teams for all games 
  * @param awayFgPcts the field goal percentages for the away teams for all games
  * @param homeFg3Pcts the 3-point field goal percentages for the home teams for all games
  * @param awayFg3Pcts the 3-point field goal percentages for the away teams for all games
