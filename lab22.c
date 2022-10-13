@@ -41,7 +41,7 @@ double pointDifferentialPerGameOneTeam(int teamID, int* homeIDs, int* awayIDs, i
  * For example, if the home team has won 2 more games, then return 2.  if the away team has won 1 more game then return -1.
  */ 
 int headToHeadWL(int homeID, int awayID, int* homeIDs, int* awayIDs, int* gameResults, int num_games){
-    
+    // Fagin should write this
     return 0.0;
 }
 
