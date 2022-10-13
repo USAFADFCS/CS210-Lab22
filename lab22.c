@@ -102,8 +102,31 @@ double reboundsPerGameComparison(int homeID, int awayID, int* homeIDs, int* away
  * The differential will be positive if the home team averages more assists per game, and vice versa
  */ 
 double assistsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayIDs, int* homeAssists, int* awayAssists){
-    
-    return 0.0;
+    int assistsHomeSum = 0;
+    int assistsAwaySum = 0;
+    int numAway = 0;
+    int numHome = 0;
+    double homeAvg = 0.0;
+    double awayAvg = 0.0;
+    double diff = 0.0;
+
+    for (int i = 0; i < NUM_GAMES; i++){
+        
+        if (homeIDs[i] == homeID) {
+            //printf("In the loop first if \n");
+            numHome++;
+            assistsHomeSum += homeAssists[i];
+            
+        }
+        if (awayID == awayIDs[i]){
+            numAway++;
+            assistsAwaySum += awayAssists[i];
+        }
+    }
+    homeAvg = (double)assistsHomeSum/(double)numHome;
+    awayAvg = (double)assistsAwaySum/(double)numAway;
+    diff = homeAvg - awayAvg;
+    return diff;
 }
 
 /** 
@@ -165,7 +188,8 @@ int main(){
     // Call reboundsPerGameComparison once to get the reboundingStat
 
     // Call assistsPerGameComparison once to get the assistStat
-
+    double assistStat = assistsPerGameComparison(homeID, awayID, homeIDs, awayIDs, homeAssists, awayAssists);
+    printf("Did this work? %lf\n", assistStat);
     // Call headToHeadWL once to get the headToHeadStat
 
 
