@@ -113,7 +113,7 @@ double reboundsPerGameComparison(int homeID, int awayID, int* homeIDs, int* away
  * @return the difference in assists per game between the home and away team
  * The differential will be positive if the home team averages more assists per game, and vice versa
  */ 
-<<<<<<< HEAD
+
 double assistsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayIDs, int* homeAssists, int* awayAssists){
     int assistsHomeSum = 0;
     int assistsAwaySum = 0;
@@ -140,7 +140,6 @@ double assistsPerGameComparison(int homeID, int awayID, int* homeIDs, int* awayI
     awayAvg = (double)assistsAwaySum/(double)numAway;
     diff = homeAvg - awayAvg;
     return diff;
-=======
 
 
 int main(){
