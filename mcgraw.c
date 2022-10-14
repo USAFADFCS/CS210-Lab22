@@ -11,6 +11,35 @@
  * The differential will be positive if team 1 averages more assists per game, and vice versa
  */ 
 double assistsPerGameComparison(int team1, int team2, int* homeIDs, int* awayIDs, int* homeAssists, int* awayAssists, int num_games){
-    
-    return 0.0;
+    //test edit
+    int assistHomeSum = 0;
+    int assistAwaySum = 0;
+    int gamesCountedHome = 0;
+    int gamesCountedAway = 0;
+
+
+    for (int i = 0; i < num_games; i++) {
+        if (team1 == homeIDs[i]) {
+            assistHomeSum += homeAssists[i];
+            gamesCountedHome++;
+
+        }else if(team1 == awayIDs[i]) {
+            assistHomeSum += awayAssists[i];
+            gamesCountedHome++;
+        }
+
+        if (team2 == homeIDs[i]) {
+            assistAwaySum += homeAssists[i];
+            gamesCountedAway++;
+        } else if (team2 == awayIDs[i]) {
+            assistAwaySum += awayAssists[i];
+            gamesCountedAway++;
+        }
+
+        
+        
+    }
+    double homeAssistsAvg = (double)assistHomeSum / (double)gamesCountedHome;
+        double awayAssistsAvg = (double)assistAwaySum / (double)gamesCountedAway;
+    return homeAssistsAvg - awayAssistsAvg;
 }
