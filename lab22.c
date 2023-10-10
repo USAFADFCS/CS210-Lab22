@@ -11,7 +11,7 @@ int main(){
     int team2 = 39;
 
     // These parallel arrays contain SOME game information to test your function
-    // Later the lab, you will replace this with the contents of the file games.csv
+    // Later in the lab, you will replace this with the contents of the file games.csv
     int homeIDs[NUM_GAMES]        = {48,    37,    38,    48,    45,    38,    51,    61,    59,    39};
     int awayIDs[NUM_GAMES]        = {50,    46,    65,    39,    42,    63,    48,    65,    58,    66};
     int homeScores[NUM_GAMES]     = {104,   112,   114,   117,   100,   120,   107,   106,   112,   98};
