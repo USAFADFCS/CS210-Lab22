@@ -6,7 +6,8 @@
 
 int main(){
 
-    //These are the IDs for the teams for the game we are predicting
+    // 48 and 39 are the IDs of the teams for the game we are predicting.  Feel free to change these to test your code for other teams, 
+    // but be sure to change them back prior to your final zyBooks submission
     int team1 = 48;
     int team2 = 39;
 
