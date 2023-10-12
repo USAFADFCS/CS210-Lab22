@@ -1,5 +1,5 @@
-#ifndef HFILE
-#define HFILE
+#ifndef H
+#define H
 
 /** 
  * @brief get point differential per game for one team
