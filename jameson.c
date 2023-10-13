@@ -11,6 +11,37 @@
  * The differential will be positive if team 1 averages more rebounds per game, and vice versa
  */ 
 double reboundsPerGameComparison(int team1, int team2, int* homeIDs, int* awayIDs, int* homeRebounds, int* awayRebounds, int num_games){
-    
-    return 0.0;
+    double avg1Rbds = 0;
+    double avg2Rbds = 0;
+    int num1Games = 0;
+    int num2Games = 0;
+    int sum1Rbds = 0;
+    int sum2Rbds = 0;
+
+    for (int i = 0; i < num_games; i++){
+        if(homeIDs[i] == team1){
+            num1Games++;
+            sum1Rbds += homeRebounds[i];
+        }
+        else if(awayIDs[i] == team1){
+            num1Games++;
+            sum1Rbds += awayRebounds[i];
+        }
+        if(homeIDs[i] == team2){
+            num2Games++;
+            sum2Rbds += homeRebounds[i];
+        }
+        else if(awayIDs[i] == team2){
+            num2Games++;
+            sum2Rbds += awayRebounds[i];
+        }
+
+
+    }
+
+    avg1Rbds = (double) sum1Rbds / (double) num1Games;
+    avg2Rbds = (double) sum2Rbds / (double) num2Games;
+
+    //diff avg rbds
+    return avg1Rbds - avg2Rbds;
 }
