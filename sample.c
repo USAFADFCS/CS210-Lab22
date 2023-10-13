@@ -11,5 +11,24 @@
  */ 
 double pointDifferentialPerGameOneTeam(int teamID, int* homeIDs, int* awayIDs, int* homeScores, int* awayScores, int num_games){
     
-    return 0.0;
+    int pointDifferentialSum = 0;
+    int numGamesPlayed = 0;
+
+    for (int i = 0; i<num_games;i++){
+        if (teamID == homeIDs[i]){
+            int pointDiff = homeScores[i]-awayScores[i];
+            pointDifferentialSum+=pointDiff;
+            numGamesPlayed++;
+        }
+        if (teamID == awayIDs[i]){
+            int pointDiff = awayScores[i]-homeScores[i];
+            pointDifferentialSum+=pointDiff;
+            numGamesPlayed++;
+        }
+    }
+
+    double average = (double)pointDifferentialSum/numGamesPlayed;
+
+
+    return average;
 }
