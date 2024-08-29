@@ -1,4 +1,11 @@
-#include <stdio.h>
+/** lab22.c
+ * =============================================================
+ * Name: Your Name
+ * Section:  Your Section
+ * Project:  FILL IN
+ * Purpose:  FILL IN
+ * Documentation Statement:  N/A
+ * ============================================================= */#include <stdio.h>
 
 //For now, you'll test your function using the 10 games listed in main().  This will need to change to 1075 when you read from the file.
 #define NUM_GAMES 10

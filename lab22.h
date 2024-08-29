@@ -1,5 +1,12 @@
-#ifndef H
-#define H
+/** lab22.h
+ * =============================================================
+ * Name: Your Name
+ * Section:  Your Section
+ * Project:  FILL IN
+ * Purpose:  FILL IN
+ * ============================================================= */
+#ifndef LAB22_H
+#define LAB22_H
 
 /** 
  * @brief get point differential per game for one team
@@ -72,4 +79,4 @@ double reboundsPerGameComparison(int team1, int team2, int* homeIDs, int* awayID
  */ 
 double assistsPerGameComparison(int team1, int team2, int* homeIDs, int* awayIDs, int* homeAssists, int* awayAssists, int num_games);
 
-#endif
+#endif //LAB22_H
