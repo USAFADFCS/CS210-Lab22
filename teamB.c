@@ -10,6 +10,22 @@
  * For example, if team 1 has won 2 more games, then return 2.  if the team 2 has won 1 more game then return -1.
  */ 
 int headToHeadWL(int team1, int team2, int* homeIDs, int* awayIDs, int* gameResults, int num_games){
-    
-    return 0;
+    int team1Counter = 0;
+    int team2Counter = 0;
+
+    for (int i = 0; i < num_games; ++i) {
+        if ((gameResults[i] == 1) && (homeIDs[i] == team1) && (awayIDs[i] == team2)) {
+            team1Counter++;
+        }
+        else if ((gameResults[i] == 0) && (homeIDs[i] == team1) && (awayIDs[i] == team2)) {
+            team2Counter++;
+        }
+        else if ((gameResults[i] == 1) && (homeIDs[i] == team2) && (awayIDs[i] == team1)) {
+            team2Counter++;
+        }
+        else if ((gameResults[i] == 0) && (homeIDs[i] == team2) && (awayIDs[i] == team1)) {
+            team1Counter++;
+        }
+    }
+    return team1Counter - team2Counter;
 }
