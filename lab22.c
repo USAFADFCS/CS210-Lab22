@@ -7,18 +7,22 @@
  * Documentation Statement:  N/A
  * ============================================================= */#include <stdio.h>
 
-//For now, you'll test your function using the 10 games listed in main().  This will need to change to 1075 when you read from the file.
+// For now, you'll test your function using the 10 games listed in main().  This will need to change
+// to 1075 when you read from the file.
 #define NUM_GAMES 10
 #include "lab22.h"
 
 int main(){
 
-    //48 and 39 are the IDs of the teams for the game we are predicting.  Feel free to change these to test your code for other teams, but be sure to change them back prior to your final zyBooks submission.
+    // 48 and 39 are the IDs of the teams for the game we are predicting.  Feel free to 
+    // change these to test your code for other teams, but be sure to change them back prior 
+    // to your final zyBooks submission.
     int team1 = 48;
     int team2 = 39;
 
     // These parallel arrays contain SOME game information to test your function
-    // Later in the lab, you will replace this with the contents of the file games.csv
+    // Later in the lab, you will not use these arrays rather you will read the  
+    // data from a file, games.csv
     int homeIDs[NUM_GAMES]        = {48,    37,    38,    48,    45,    38,    51,    61,    59,    39};
     int awayIDs[NUM_GAMES]        = {50,    46,    65,    39,    42,    63,    48,    65,    58,    66};
     int homeScores[NUM_GAMES]     = {104,   112,   114,   117,   100,   120,   107,   106,   112,   98};
@@ -61,12 +65,9 @@ int main(){
 
     // ----------------------------------------------------------------------------------
     // Step 3:  Use the following formula to predict the winner
-    // (pointDifferentialStat * 0.6) + headToHeadStat + (shootingDifferentialStat * 120) + reboundingStat + (assistStat * 0.75)
+    // (pointDifferentialStat * 0.6) + headToHeadStat + (shootingDifferentialStat * 120)
+    //                               + reboundingStat + (assistStat * 0.75)
     // ----------------------------------------------------------------------------------
 
-
-
-  
     return 0;
-
 }
