@@ -1,30 +1,31 @@
-/** lab22.c
- * =============================================================
- * Name: Your Name
- * Section:  Your Section
- * Project:  FILL IN
- * Purpose:  FILL IN
- * Documentation Statement:  N/A
- * ============================================================= */
 #include <stdio.h>
+
+//For now, you'll test your function using the 10 games listed in main().  This will need to change to 1075 when you read from the file.
+#define NUM_GAMES 1075
 #include "lab22.h"
 
-// For now, you'll test your function using the 10 games listed in main().  This will need to change
-// to 1075 when you read from the file.
-#define NUM_GAMES 10
-
-
 int main(){
-
-    // 48 and 39 are the IDs of the teams for the game we are predicting.  Feel free to 
-    // change these to test your code for other teams, but be sure to change them back prior 
-    // to your final zyBooks submission.
+    //These are the IDs for the teams for the game we are predicting
     int team1 = 48;
     int team2 = 39;
 
+    // ----------------------------------------------------------------------------------
+    // Step 1:  Read the the contents of games.csv into the parallel arrays above
+    // ----------------------------------------------------------------------------------
+
+    FILE* inFile = NULL;
+    inFile = fopen("games.csv","r");
+    if(inFile == NULL){
+        printf("Could not open file myfile.txt.\n");
+        return -1;
+    }
+
+    //Ignore the first line - the line with headers
+    fscanf(inFile, "%*[^\n]\n");
+    
+
     // These parallel arrays contain SOME game information to test your function
-    // Later in the lab, you will not use these arrays rather you will read the  
-    // data from a file, games.csv
+    // Later the lab, you will replace this with the contents of the file games.csv
     int homeIDs[NUM_GAMES]        = {48,    37,    38,    48,    45,    38,    51,    61,    59,    39};
     int awayIDs[NUM_GAMES]        = {50,    46,    65,    39,    42,    63,    48,    65,    58,    66};
     int homeScores[NUM_GAMES]     = {104,   112,   114,   117,   100,   120,   107,   106,   112,   98};
@@ -41,34 +42,65 @@ int main(){
     int awayRebounds[NUM_GAMES]   = {46,    36,    42,    40,    47,    44,    35,    42,    49,    45};
     int homeTeamWins[NUM_GAMES]   = {0,     1,     1,     1,     0,     1,     0,     0,     0,     0};
 
-    // ----------------------------------------------------------------------------------
-    // Step 1:  Read the the contents of games.csv into the parallel arrays above
-    // ----------------------------------------------------------------------------------
+
+    //Actually parse through the file and gather the info into the arrays
+    for (int i=0;i<NUM_GAMES;i++){
+        fscanf(inFile, "%d,%d,%d,",&homeIDs[i],&awayIDs[i],&homeScores[i]);
+        fscanf(inFile, "%lf,%lf,%lf,%d,%d,%d,",&homeFgPcts[i],&homeFtPcts[i],&homeFg3Pcts[i],&homeAssists[i],&homeRebounds[i],&awayScores[i]);
+        fscanf(inFile, "%lf,%lf,%lf,%d,%d,%d\n",&awayFgPcts[i],&awayFtPcts[i],&awayFg3Pcts[i],&awayAssists[i],&awayRebounds[i],&homeTeamWins[i]);
+    }
     
+    fclose(inFile);
 
     // ----------------------------------------------------------------------------------
     // Step 2:  Call the 5 functions and gather their data
     // ----------------------------------------------------------------------------------
+
     // Call pointDifferentialPerGameOneTeam 2x – once for the home team and once for the away time
-
-    // Subtract Team 2 from Team 1 to get the pointDifferentialStat
-
-    // Call shootingEffectivenessOneTeam 2x – once for the home team and once for the away time
+    double homePointDiffCompare = pointDifferentialPerGameOneTeam(team1, homeIDs, awayIDs, homeScores, awayScores,NUM_GAMES);
+    double awayPointDiffCompare = pointDifferentialPerGameOneTeam(team2, homeIDs, awayIDs, homeScores, awayScores,NUM_GAMES);
     
-    // Subtract Team 2 from Team 1 to get the shootingDifferentialStat
+    // Subtract the home team from the away team to get the pointDifferentialStat
+    double pointDiffCompare = homePointDiffCompare - awayPointDiffCompare;
+    
+    // Call shootingEffectivenessOneTeam 2x – once for the home team and once for the away time
+    double homeShooting = shootingEffectivenessOneTeam(team1, homeIDs, awayIDs, homeFgPcts, awayFgPcts, homeFg3Pcts, awayFg3Pcts, homeFtPcts, awayFtPcts, NUM_GAMES);
+    double awayShooting = shootingEffectivenessOneTeam(team2, homeIDs, awayIDs, homeFgPcts, awayFgPcts, homeFg3Pcts, awayFg3Pcts, homeFtPcts, awayFtPcts, NUM_GAMES);
+
+    // Subtract the home team from the away team to get the shootingDifferentialStat
+    double shootingDifferential = homeShooting - awayShooting;
 
     // Call reboundsPerGameComparison once to get the reboundingStat
+    double reboundDifferential = reboundsPerGameComparison(team1, team2, homeIDs, awayIDs, homeRebounds, awayRebounds, NUM_GAMES);
 
     // Call assistsPerGameComparison once to get the assistStat
+    double assistDifferential = assistsPerGameComparison(team1, team2, homeIDs, awayIDs, homeAssists, awayAssists, NUM_GAMES);
 
     // Call headToHeadWL once to get the headToHeadStat
+    int h2h = headToHeadWL(team1, team2, homeIDs, awayIDs, homeTeamWins, NUM_GAMES);
 
 
     // ----------------------------------------------------------------------------------
     // Step 3:  Use the following formula to predict the winner
-    // (pointDifferentialStat * 0.6) + headToHeadStat + (shootingDifferentialStat * 120)
-    //                               + reboundingStat + (assistStat * 0.75)
+    // (pointDifferentialStat * 0.6) + headToHeadStat + (shootingDifferentialStat * 120) + reboundingStat + (assistStat * 0.75)
+    // ----------------------------------------------------------------------------------    
+    
+    double prediction = pointDiffCompare*0.6 + (double)h2h + shootingDifferential*120.0 + reboundDifferential + assistDifferential*0.75;
+    
     // ----------------------------------------------------------------------------------
+    // Print out the output
+    // ----------------------------------------------------------------------------------
+    // If the value is > 0, then the home team is predicted to win; if the value is <= 0, then the away team is predicted to win
+
+    int teamPredictedToWin = 0;
+
+    if (prediction > 0){
+        teamPredictedToWin = team1;
+    }else{
+        teamPredictedToWin = team2;
+    }
+    printf("The final output is %.2lf, which means team %d is predicted to win the game.\n",prediction,teamPredictedToWin);
 
     return 0;
+
 }
